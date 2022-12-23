@@ -1,0 +1,155 @@
+templates:
+  default: &default
+    values:
+      - ./environments/{{ regexReplaceAll "^(w|ho)?cs-" (.Environment.Name) "" }}/values/{{ .Release.Name }}.yaml.gotmpl
+
+repositories:
+  hocs-helm-charts: https://ukhomeoffice.github.io/hocs-helm-charts
+
+charts:
+  hocs-audit:
+    name: hocs-audit
+    deploy: false
+    chart: hocs-helm-charts/hocs-audit
+    version: ^3.0.0
+    <<: *default
+
+  hocs-case-creator:
+    name: hocs-case-creator
+    deploy: false
+    chart: hocs-helm-charts/hocs-case-creator
+    version: ^3.0.0
+    <<: *default
+
+  hocs-case-migrator:
+    name: hocs-case-migrator
+    deploy: false
+    chart: hocs-helm-charts/hocs-case-migrator
+    version: ^3.0.0
+    <<: *default
+
+  hocs-casework:
+    name: hocs-casework
+    deploy: false
+    chart: hocs-helm-charts/hocs-casework
+    version: ^3.0.0
+    <<: *default
+
+  hocs-docs:
+    name: hocs-docs
+    deploy: false
+    chart: hocs-helm-charts/hocs-docs
+    version: ^3.0.0
+    <<: *default
+
+  hocs-docs-converter:
+    name: hocs-docs-converter
+    deploy: false
+    chart: hocs-helm-charts/hocs-docs-converter
+    version: ^3.0.0
+    <<: *default
+
+  hocs-extracts:
+    name: hocs-extracts
+    deploy: false
+    chart: hocs-helm-charts/hocs-extracts
+    version: ^3.0.0
+    <<: *default
+
+  hocs-frontend:
+    name: hocs-frontend
+    deploy: false
+    chart: hocs-helm-charts/hocs-frontend
+    version: ^4.0.0
+    <<: *default
+
+  hocs-info-service:
+    name: hocs-info-service
+    deploy: false
+    chart: hocs-helm-charts/hocs-info-service
+    version: ^1.0.0
+    <<: *default
+
+  hocs-network-policies:
+    name: hocs-network-policies
+    deploy: false
+    chart: hocs-helm-charts/hocs-network-policies
+    version: ^1.0.0
+    <<: *default
+
+  hocs-management-ui:
+    name: hocs-management-ui
+    deploy: false
+    chart: hocs-helm-charts/hocs-management-ui
+    version: ^3.0.0
+    <<: *default
+
+  hocs-notify:
+    name: hocs-notify
+    deploy: false
+    chart: hocs-helm-charts/hocs-notify
+    version: ^3.0.0
+    <<: *default
+
+  hocs-outbound-proxy:
+    name: hocs-outbound-proxy
+    deploy: false
+    chart: hocs-helm-charts/hocs-outbound-proxy
+    version: ^3.0.0
+    <<: *default
+
+  hocs-queue-tool:
+    name: hocs-queue-tool
+    deploy: false
+    chart: hocs-helm-charts/hocs-queue-tool
+    version: ^4.0.0
+    <<: *default
+
+  hocs-search:
+    name: hocs-search
+    deploy: false
+    chart: hocs-helm-charts/hocs-search
+    version: ^3.0.0
+    <<: *default
+
+  hocs-search-consumer:
+    name: hocs-search-consumer
+    deploy: false
+    chart: hocs-helm-charts/hocs-search-consumer
+    version: ^3.0.0
+    <<: *default
+
+  hocs-search-opensearch:
+    name: hocs-search-opensearch
+    deploy: false
+    chart: hocs-helm-charts/hocs-search-opensearch
+    version: ^1.0.0
+    <<: *default
+
+  hocs-search-consumer-opensearch:
+    name: hocs-search-consumer-opensearch
+    deploy: false
+    chart: hocs-helm-charts/hocs-search-consumer-opensearch
+    version: ^1.0.0
+    <<: *default
+
+  hocs-templates:
+    name: hocs-templates
+    deploy: false
+    chart: hocs-helm-charts/hocs-templates
+    version: ^3.0.0
+    <<: *default
+
+  hocs-toolbox:
+    name: hocs-toolbox
+    deploy: false
+    chart: hocs-helm-charts/hocs-toolbox
+    version: ^2.0.0
+    <<: *default
+
+  hocs-workflow:
+    name: hocs-workflow
+    deploy: false
+    chart: hocs-helm-charts/hocs-workflow
+    version: ^3.0.0
+    <<: *default
