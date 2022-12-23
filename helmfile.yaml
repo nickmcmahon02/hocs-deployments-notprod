@@ -19,6 +19,16 @@ templates:
       - ./environments/{{ regexReplaceAll "^(w|ho)?cs-" (.Environment.Name) "" }}/versions.yaml
 
 environments:
+  cs-qa:
+    <<: *cs
+  cs-demo:
+    <<: *cs
+  wcs-qa:
+    <<: *wcs
+  wcs-demo:
+    <<: *wcs
+  hocs-qax:
+    <<: *cs
 
 repositories:
 {{- range $name, $url := .Values.repositories }}

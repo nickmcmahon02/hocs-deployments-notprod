@@ -1,0 +1,14 @@
+---
+version: {{ index .Values.versions "hocs-outbound-proxy" }}
+
+deployment:
+  annotations:
+    downscaler/downtime: "Mon-Sun 00:00-07:50 Europe/London,Mon-Sun 18:10-24:00 Europe/London"
+
+app:
+  resources:
+    requests:
+      cpu: 50m
+
+rdsCIDR: {{ env "RDS_CIDR" }}
+awsAccount: {{ env "AWS_ACCOUNT" }}
