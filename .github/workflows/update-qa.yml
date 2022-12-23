@@ -1,0 +1,20 @@
+name: 'Update QA versions yml'
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  update:
+    name: 'Update versions'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Update Action
+        uses: UKHomeOffice/update-helmfile-action@v0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
