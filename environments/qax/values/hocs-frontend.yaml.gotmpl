@@ -1,0 +1,69 @@
+---
+hocs-generic-service:
+  version: {{ .Values.versions.hocs-frontend }}
+
+  deployment:
+    annotations:
+      downscaler/downtime: "Mon-Sun 00:00-08:00 Europe/London,Mon-Sun 18:00-24:00 Europe/London"
+
+{{- if hasPrefix "wcs-" .Environment.Name }}
+  clusterPrefix: wcs
+
+  keycloak:
+    realm: https://sso-dev.notprod.homeoffice.gov.uk/auth/realms/hocs-notprod
+    domain: wcs-notprod.homeoffice.gov.uk
+    resources:
+      limits:
+        cpu: 100m
+      requests:
+        cpu: 50m
+
+  ingress:
+    external:
+      enabled: true
+      host: {{ .Environment.Name | regexFind "[^-]+$" }}.wcs-notprod.homeoffice.gov.uk
+      allowedIps: {{ env "ALLOWED_IPS" }}
+    internal:
+      enabled: true
+      host: {{ .Environment.Name | regexFind "[^-]+$" }}.internal.wcs-notprod.homeoffice.gov.uk
+{{- else }}
+  clusterPrefix: cs
+
+  keycloak:
+    realm: https://sso-dev.notprod.homeoffice.gov.uk/auth/realms/hocs-notprod
+    domain: cs-notprod.homeoffice.gov.uk
+    resources:
+      limits:
+        cpu: 100m
+      requests:
+        cpu: 50m
+
+  ingress:
+    external:
+      enabled: true
+      host: {{ .Environment.Name | regexFind "[^-]+$" }}.cs-notprod.homeoffice.gov.uk
+      allowedIps: {{ env "ALLOWED_IPS" }}
+    internal:
+      enabled: true
+      host: {{ .Environment.Name | regexFind "[^-]+$" }}.internal.cs-notprod.homeoffice.gov.uk
+{{- end }}
+
+  truststore:
+    resources:
+      requests:
+        cpu: 50m
+
+  proxy:
+    resources:
+      requests:
+        cpu: 50m
+
+  app:
+    resources:
+      limits:
+        memory: 512Mi
+      requests:
+        cpu: 50m
+        memory: 512Mi
+    env:
+      isNotProd: '1'
