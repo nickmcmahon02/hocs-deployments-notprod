@@ -8,8 +8,8 @@ concurrency:
 
 env:
 
-  PR_BRANCH: 'update_qa_' + ${{ date +%Y%m%d }}
-  PR_TITLE: 'Update QA environment ' + ${{ date +%Y%m%d }}
+  PR_BRANCH: update_qa_${{ date +%Y%m%d }}
+  PR_TITLE: Update QA environment ${{ date +%Y%m%d }}
   VERSION_FILE_PATH: './environments/qa/versions.yaml'
 
 jobs:
