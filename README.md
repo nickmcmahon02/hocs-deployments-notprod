@@ -7,12 +7,10 @@ This repository controls deployments to notprod environments
 ## Deploy to QA
 
 To deploy the latest code to QA
-
-1. Go to the Actions tab
-2. Click on 'Update QA versions yml'
-3. Click on 'Run Workflow' and wait for the job to complete
-4. Go to the Pull Requests tab
-5. Click on the pull request and press 'Rebase and merge'.
+1. Click on [deploy to QA](https://github.com/UKHomeOffice/hocs-deployments-notprod/actions/workflows/update-qa.yml)
+2. Click on 'Run Workflow' and wait for the job to complete
+3. Go to the Pull Requests tab
+4. Click on the pull request and press 'Rebase and merge'.
 
 
 ## Deploy to Other environments
