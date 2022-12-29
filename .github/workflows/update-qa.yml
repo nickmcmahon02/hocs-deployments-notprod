@@ -9,6 +9,7 @@ concurrency:
 env:
   PR_BRANCH: 'update_qa'
   PR_TITLE: 'Update QA environment'
+  VERSION_FILE_PATH: './environments/qa/versions.yaml'
 
 jobs:
   update:
@@ -29,17 +30,18 @@ jobs:
         shell: bash
 
       - name: Run update action
-        uses: UKHomeOffice/update-helmfile-action@v0
+        uses: UKHomeOffice/update-helmfile-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          
+          version_file_path: $VERSION_FILE_PATH
+
       - name: Add all files
         run: |
           git add --all
           git commit -m "$PR_TITLE"
           git push --set-upstream origin $PR_BRANCH --force
-        shell: bash                   
-          
+        shell: bash
+
       - name: Create a PR
         run: gh pr edit $PR_BRANCH --title "$PR_TITLE" && gh pr reopen $PR_BRANCH || gh pr create --fill -B main -H $PR_BRANCH
         shell: bash
