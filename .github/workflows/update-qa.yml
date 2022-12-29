@@ -33,7 +33,7 @@ jobs:
         uses: UKHomeOffice/update-helmfile-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          version_file_path: $VERSION_FILE_PATH
+          version_file_path: ${{ VERSION_FILE_PATH }}
 
       - name: Add all files
         run: |
