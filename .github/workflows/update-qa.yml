@@ -6,6 +6,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  PR_BRANCH: 'update_qa'
+  PR_TITLE: 'Update QA environment'
+
 jobs:
   update:
     name: 'Update versions'
@@ -14,7 +18,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Run Update Action
+      - name: Configure git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+        shell: bash
+
+      - name: Create a branch
+        run: git checkout -b $PR_BRANCH
+        shell: bash
+
+      - name: Run update action
         uses: UKHomeOffice/update-helmfile-action@v0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Add all files
+        run: |
+          git add --all
+          git commit -m "$PR_TITLE"
+          git push --set-upstream origin $PR_BRANCH --force
+        shell: bash                   
+          
+      - name: Create a PR
+        run: gh pr edit $PR_BRANCH --title "$PR_TITLE" && gh pr reopen $PR_BRANCH || gh pr create --fill -B main -H $PR_BRANCH
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
