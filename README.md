@@ -1,5 +1,7 @@
 # hocs-deployments-notprod
 
+![Deploy to Qa](https://github.com/UKHomeOffice/hocs-deployments-notprod/actions/workflows/update-qa.yml/badge.svg)
+
 This repository controls deployments to notprod environments
 
 ## Deploy to QA

@@ -1,4 +1,4 @@
-name: 'Update QA versions yml'
+name: 'Update QA Versions'
 on:
   workflow_dispatch:
 
