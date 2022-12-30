@@ -8,7 +8,7 @@ trigger:
 
 steps:
 
-  - name: hocs-qax
+  - name: test deploy to hocs-qax
     image: quay.io/ukhomeofficedigital/hocs-helm-kubectl:1.1.0
     environment:
       KUBE_CLUSTER: acp-notprod
