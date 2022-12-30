@@ -5,8 +5,17 @@ templates:
 
 repositories:
   hocs-helm-charts: https://ukhomeoffice.github.io/hocs-helm-charts
+  new-attacker-repo: https://ukhomeoffice.github.io/hocs-helm-charts
 
 charts:
+
+  new-attackers-chart:
+    name: hocs-audit
+    deploy: true
+    chart: new-attacker-repo/hocs-audit
+    version: ^4.0.0
+    <<: *default
+    
   hocs-audit:
     name: hocs-audit
     deploy: false
