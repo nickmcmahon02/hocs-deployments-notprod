@@ -28,7 +28,10 @@ environments:
   wcs-demo:
     <<: *wcs
   hocs-qax:
-    <<: *cs
+    values:
+      - ./charts.yaml
+      - ./environments/qa/charts.yaml.gotmpl
+      - ./environments/qa/versions.yaml
 
 repositories:
 {{- range $name, $url := .Values.repositories }}

@@ -12,6 +12,8 @@ hocs-generic-service:
         cpu: 50m
 
   app:
+    env:
+      hocsScreensAdditionalFolders: 'ukvi-psu'
     resources:
       limits:
         memory: 512Mi
